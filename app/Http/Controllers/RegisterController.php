@@ -6,13 +6,15 @@ use App\actions\ImageModelSave;
 use App\Http\Requests\RegisterFormRequest;
 use App\services\users\SaveUserInfoService;
 use App\traits\upload_image;
-
+use App\Models\Company;
 class RegisterController extends Controller
 {
     use upload_image;
     public function index()
     {
-        return view('auth.register');
+        $companies=Company::query()->select('company_name')->get();
+//        dd($companies[0]->company_name);
+        return view('auth.register',compact('companies'));
     }
     public function save(RegisterFormRequest $request)
     {

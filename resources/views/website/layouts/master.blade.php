@@ -113,8 +113,8 @@
                         @endauth
 
                         @guest
-                            <a class="dropdown-item" href="#">Log In</a>
-                            <a class="dropdown-item" href="#">Sign Up</a>
+                            <a class="dropdown-item" href="{{route('login')}}">Log In</a>
+                            <a class="dropdown-item" href="{{route('register')}}">Sign Up</a>
                         @endguest
                     </div>
                 </div>

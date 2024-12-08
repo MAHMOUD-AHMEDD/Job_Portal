@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Website\HomeController;
+use App\Http\Controllers\RegisterController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +19,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['prefix'=>'/auth'],function (){
+
+    Route::get('/register',[RegisterController::class,'index'])->name('register');
+    Route::post('/register-post',[RegisterController::class,'save'])->name('auth.register');
+
+    Route::get('/login',[LoginController::class,'index'])->name('login');
+    Route::post('/login-post',[LoginController::class,'save'])->name('auth.login');
+});
 Route::get('/home',[HomeController::class,'home'])->name('website.home');
 Route::get('/about',[HomeController::class,'about'])->name('about');
 Route::get('/job-detail',[HomeController::class,'job_detail'])->name('job_detail');
